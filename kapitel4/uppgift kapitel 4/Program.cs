@@ -7,48 +7,48 @@ int saldo = 10000;
 int val = 0;
 if (användarnamn == "petter" && losen == "abc123")
 {
-    Console.WriteLine("Välkomen peter\nDitt saldo är " + saldo + " kr" +
-        " \nVill du:\n1.Ta ut pengar\n2.sätta in pengar\n3.Logga ut");
+	Console.WriteLine("Välkomen peter\nDitt saldo är " + saldo + " kr" +
+		" \nVill du:\n1.Ta ut pengar\n2.sätta in pengar\n3.Logga ut");
 
-     val = int.Parse(Console.ReadLine());
+	 val = int.Parse(Console.ReadLine());
 } 
 
 int uttag = -1;
 int insätning=-1;
-    switch (val)
+	switch (val)
 {
-    case  1:
-        Console.WriteLine("Hur mycket vill du ta ut?");
-        uttag = int.Parse(Console.ReadLine());
-       
-        break;
-    case  2:
-        Console.WriteLine("Hur mycket vill du sätta in");
-        insätning=int.Parse(Console.ReadLine());
-        break;
-    case  3:
-        Console.WriteLine("Du är utloggad\nHa en bra dag");
-        break;
-        case 0:
-        Console.WriteLine("Fel vid inlogning");
-        break;
+	case  1:
+		Console.WriteLine("Hur mycket vill du ta ut?");
+		uttag = int.Parse(Console.ReadLine());
+	   
+		break;
+	case  2:
+		Console.WriteLine("Hur mycket vill du sätta in");
+		insätning=int.Parse(Console.ReadLine());
+		break;
+	case  3:
+		Console.WriteLine("Du är utloggad\nHa en bra dag");
+		break;
+		case 0:
+		Console.WriteLine("Fel vid inlogning");
+		break;
 }
 
 if (uttag > saldo)
 {
-    Console.WriteLine("du har inte tillräckligt mycket pengar");
+	Console.WriteLine("du har inte tillräckligt mycket pengar");
 }
 else if ((uttag <= saldo) && uttag>0 )
 {
    saldo -= uttag;
-    Console.WriteLine("Uttag avklarat ditt kvarvarande saldo är\n" + saldo); 
+	Console.WriteLine("Uttag avklarat ditt kvarvarande saldo är\n" + saldo); 
 }
 if (insätning > 50000)
 {
-    Console.WriteLine("Fel: max insätning är 50 000 kr");
+	Console.WriteLine("Fel: max insätning är 50 000 kr");
 }
 else if (insätning <= 50000 && insätning > 0)
 {
-    saldo += insätning;
-    Console.WriteLine("Din insätning har dokumenterats ditt nya saldo är " + saldo + "kr");
+	saldo += insätning;
+	Console.WriteLine("Din insätning har dokumenterats ditt nya saldo är " + saldo + "kr");
 }
