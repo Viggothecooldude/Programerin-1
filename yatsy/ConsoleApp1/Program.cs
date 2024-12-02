@@ -30,7 +30,7 @@ while ( avsluta ==0 ) {
         Console.WriteLine(tarningsbilder[tarning[i]-1]);
     }
     
-    int[] slag = [tarning[0], tarning[1], tarning[2], tarning[3],tarning[4]];
+        }
     
     for (int i = 1; i <= 6; i++)
     {
