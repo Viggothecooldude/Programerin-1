@@ -38,13 +38,11 @@ while (avsluta == 0) {
 
             for (int i = 0; i < 5; i++)
             {
-
                 //visa tärningar
                 if (keep[i] == '0')
                 {
                     tarning[i] = tarningslag.Next(1, 7);
                 }
-
             }
         }
     }
