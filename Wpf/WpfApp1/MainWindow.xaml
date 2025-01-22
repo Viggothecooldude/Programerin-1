@@ -1,0 +1,28 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Mitt fina program" Height="400" Width="600">
+    <Grid>
+        <StackPanel>
+            <TextBlock Background="Coral" Text="Information" Height="40" Width="200" FontSize="30px" TextAlignment="Center"/>
+            <WrapPanel HorizontalAlignment="Center"  Margin="20px">
+                <Button Name="btn1" Content="Red" Background="red" Foreground="White" Width="100px"/>
+                <Button Name="btn2" Content="Blue" Background="blue" Foreground="White" Width="100px"/>
+                <Button Name="btn3" Content="Green" Background="green" Foreground="White" Width="100px"/>
+                <Button Name="btn4" Content="Orange" Background="orange" Foreground="White" Width="100px"/>
+                <Button Name="btn5" Content="Purple" Background="purple" Foreground="White" Width="100px"/>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center" >
+                <Button Name="btn6" Content="Black" Background="black" Foreground="White" Width="100px"/>
+                <Button Name="btn7" Content="White" Background="white" Width="100px"/>
+                <Button Name="btn8" Content="Pink" Background="pink" Width="100px"/>
+                <Button Name="btn9" Content="Yellow" Background="Yellow" Width="100px"/>
+                <Button Name="btn10" Content="cyan" Background="cyan" Width="100px"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>
