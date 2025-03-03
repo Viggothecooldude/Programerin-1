@@ -7,22 +7,36 @@
         mc:Ignorable="d"
         Title="Mitt fina program" Height="400" Width="600">
     <Grid>
-        <StackPanel>
-            <TextBlock Background="Coral" Text="Information" Height="40" Width="200" FontSize="30px" TextAlignment="Center"/>
-            <WrapPanel HorizontalAlignment="Center"  Margin="20px">
-                <Button Name="btn1" Content="Red" Background="red" Foreground="White" Width="100px"/>
-                <Button Name="btn2" Content="Blue" Background="blue" Foreground="White" Width="100px"/>
-                <Button Name="btn3" Content="Green" Background="green" Foreground="White" Width="100px"/>
-                <Button Name="btn4" Content="Orange" Background="orange" Foreground="White" Width="100px"/>
-                <Button Name="btn5" Content="Purple" Background="purple" Foreground="White" Width="100px"/>
-            </WrapPanel>
-            <WrapPanel HorizontalAlignment="Center" >
-                <Button Name="btn6" Content="Black" Background="black" Foreground="White" Width="100px"/>
-                <Button Name="btn7" Content="White" Background="white" Width="100px"/>
-                <Button Name="btn8" Content="Pink" Background="pink" Width="100px"/>
-                <Button Name="btn9" Content="Yellow" Background="Yellow" Width="100px"/>
-                <Button Name="btn10" Content="cyan" Background="cyan" Width="100px"/>
-            </WrapPanel>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <GroupBox Name="gbxövrehöger" Header="Val" Grid.Column="1">
+            <ListBox>
+                <ListBoxItem Uid="val" Content="första" Selected="ListBoxItem_Selected"></ListBoxItem>
+                <ListBoxItem Uid="val" Content="andra" Selected="ListBoxItem_Selected_1"></ListBoxItem>
+                <ListBoxItem Uid="val" Content="tredje" Selected="ListBoxItem_Selected_2"></ListBoxItem>
+                <ListBoxItem Uid="val" Content="fjärde" Selected="ListBoxItem_Selected_3"></ListBoxItem>
+            </ListBox>
+        </GroupBox>
+
+        <GroupBox x:Name="gbxnedrevänster" Header="Välja" Grid.Row="0">
+                
+                <StackPanel>
+                    <RadioButton x:Uid="välj" Checked="RadioButton_Checked" Content="a"/>
+                    <RadioButton x:Uid="välj" Checked="RadioButton_Checked_1" Content="b"/>
+                    <RadioButton x:Uid="välj" Checked="RadioButton_Checked_2" Content="c"/>
+                    <RadioButton x:Uid="välj" Checked="RadioButton_Checked_3" Content="d"/>
+                </StackPanel>
+            </GroupBox>
+
+        <TextBox Name="textLeft" Grid.Row="1">Förnamn</TextBox>
+        <TextBox Name="textRight" Grid.Row="1" Grid.Column="1">Efternamn</TextBox>
     </Grid>
-</Window>
+</Window>      

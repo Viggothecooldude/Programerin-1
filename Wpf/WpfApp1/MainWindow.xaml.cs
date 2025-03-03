@@ -19,9 +19,53 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show("Varning!");
         }
 
-       
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            textLeft.Foreground= Brushes.Red;
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            textLeft.Foreground = Brushes.Blue;
+
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            textLeft.Foreground = Brushes.Yellow;
+
+        }
+
+        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        {
+            textLeft.Foreground = Brushes.Green;
+
+        }
+
+        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            textRight.Foreground = Brushes.Red;
+
+        }
+
+        private void ListBoxItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            textRight.Foreground = Brushes.Blue;
+
+        }
+
+        private void ListBoxItem_Selected_2(object sender, RoutedEventArgs e)
+        {
+            textRight.Foreground = Brushes.Yellow;
+
+        }
+
+        private void ListBoxItem_Selected_3(object sender, RoutedEventArgs e)
+        {
+            textRight.Foreground = Brushes.Green;
+
+        }
     }
 }
