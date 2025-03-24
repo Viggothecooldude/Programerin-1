@@ -1,0 +1,54 @@
+﻿<Window x:Class="Verkstaden.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Verkstaden"
+        mc:Ignorable="d"
+        Title="Billies bilverkstad" Height="300" Width="550">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Image Source="/Resources/billies_bil.png"  />
+        <GroupBox Header="Inkörning" Grid.Column="1" Background="WhiteSmoke" Margin="3">
+            <StackPanel Margin="5">
+                <WrapPanel>
+                    <StackPanel>
+                        <TextBlock Text="Ange regnummer:" Margin="5"/>
+                        <Button Name="btnParkera" Content="Parkera" Margin="5" Click="btnParkera_Click" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBox Name="tbxRegParkera" Width="80" Margin="5" />
+                    </StackPanel>
+                </WrapPanel>
+                <TextBlock Name="tblParkerad" Margin="5" TextWrapping="Wrap" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Sökning" Grid.Column="1" Grid.Row="1" Background="WhiteSmoke" Margin="3">
+            <StackPanel Margin="5">
+                <WrapPanel>
+                    <StackPanel>
+                        <TextBlock Text="Ange regnummer:" Margin="5"/>
+                        <Button Name="btnSök" Content="Sök" Margin="5" Click="btnSök_Click" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBox Name="tbxRegSök" Width="80" Margin="5" />
+                    </StackPanel>
+                </WrapPanel>
+                <TextBlock Name="tblSök" Margin="5" TextWrapping="Wrap" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Behandling" Grid.Column="0" Grid.Row="1" Background="WhiteSmoke" Margin="3" >
+            <StackPanel>
+                <Button Name="btnBehandla" Margin="5" Content="Hämta nästa" Width="100" Click="btnBehandla_Click" />
+                <TextBlock Name="tblHämtad" Margin="5" TextWrapping="Wrap" />
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
