@@ -42,9 +42,9 @@ namespace WpfApp_uppgift_1
             }
            
         }
-       void Månad(bool år)
+       void Månad(int år)
         {
-
+            
         }
 
         private void ärdet_Click(object sender, RoutedEventArgs e)
