@@ -11,14 +11,14 @@
             <WrapPanel>
                 <GroupBox Header="Skana vara">
                     <StackPanel Margin="10" Height="130" Width="130">
-                        <TextBox Margin="0 2 0 10" Name="tbxProduktInskaning" />
+                        <TextBox  Margin="0 2 5 10" Name="tbxProduktInskaning" />
                         <TextBlock Text="Namn"/>
                         <TextBlock Name="tblProduktInskaningNamn" />
                         <TextBlock Text="Pris" />
                         <TextBlock Name="tblProduktInskaningPris" />
                         <WrapPanel Margin="0 10 0 0">
                             <Button Margin="0 0 10 0" Width="60" Name="btnAddProdukt">Add</Button>
-                            <Button Width="60" Name="btnDontAddProdukt">Don't Add</Button>
+                            <Button Width="60" Name="btnCheckInskaningProdukt" Click="btnCheckInskaningProdukt_Click">Check</Button>
                         </WrapPanel>
                     </StackPanel>
                 </GroupBox>
@@ -42,7 +42,7 @@
                         <TextBlock >Lösenord</TextBlock>
                         <TextBox Margin="0 0 0 20" Name="tbxKontoLösenord"></TextBox>
                         <Button Name="btnLoggaIn" >Logga In</Button>
-                        
+
 
                     </StackPanel>
                 </GroupBox>

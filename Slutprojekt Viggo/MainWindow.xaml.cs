@@ -20,5 +20,24 @@ namespace Slutprojekt_Viggo
         {
             InitializeComponent();
         }
+
+        private void btnCheckInskaningProdukt_Click(object sender, RoutedEventArgs e)
+        {
+            Kollanummer(tbxProduktInskaning.Text);
+        }
+        int Kollanummer(string nummer)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                
+            }
+            if (nummer == Serienummer)
+            { 
+                
+            }
+            
+            return  1;
+            
+        }
     }
 }

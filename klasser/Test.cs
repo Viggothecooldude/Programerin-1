@@ -1,6 +1,9 @@
 ﻿using System;
 
-public class Test
+
+internal class Test(string färg)
 {
-    public string färg { get; set; }
+    public string Färg { get; set; } = färg;
+
+    
 }

@@ -23,9 +23,9 @@ namespace klasser
         
         string Testfunktion()
         {
-            Test test = new();
-            test.färg = "Röd";
-            return test.färg;
+            Test test = new("röd") ;
+
+            return test.Färg;
         }
 
         private void knap_Click(object sender, RoutedEventArgs e)
