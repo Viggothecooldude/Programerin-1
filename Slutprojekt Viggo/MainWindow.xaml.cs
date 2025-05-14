@@ -19,6 +19,19 @@ namespace Slutprojekt_Viggo
         public MainWindow()
         {
             InitializeComponent();
+            Varulista();
+        }
+        
+        void Varulista()
+        {
+            List<int> serie =   [001,    002,     003];
+            List<string> name = ["äpple","bannan","päron"];
+            List<int> kostnad = [10,     15,      17];
+            for (int i = 0; i < serie.Count; i++)
+            {
+                Vara vara = new(serie[i], name[i], kostnad[i]);
+                List<Vara> varor = vara;
+            }
         }
 
         private void btnCheckInskaningProdukt_Click(object sender, RoutedEventArgs e)
@@ -27,15 +40,7 @@ namespace Slutprojekt_Viggo
         }
         int Kollanummer(string nummer)
         {
-            for (int i = 0; i < length; i++)
-            {
-                
-            }
-            if (nummer == Serienummer)
-            { 
-                
-            }
-            
+ 
             return  1;
             
         }
