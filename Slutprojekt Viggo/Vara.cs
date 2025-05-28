@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Slutprojekt_Viggo
 {
-    class Vara(int serienummer, string namn, int pris)
+    class Vara(string serienummer, string namn, int pris)
     {
-        public int Serienummer { get; } = serienummer;
+        public string Serienummer { get; } = serienummer;
         public string Namn { get; } = namn;
         public int Pris { set; get; } = pris;
         
