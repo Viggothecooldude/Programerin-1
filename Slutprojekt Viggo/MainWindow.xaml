@@ -17,7 +17,7 @@
                         <TextBlock Text="Pris" />
                         <TextBlock Name="tblProduktInskaningPris" />
                         <WrapPanel Margin="0 10 0 0">
-                            <Button Margin="0 0 10 0" Width="60" Name="btnAddProdukt">Add</Button>
+                            <Button Margin="0 0 10 0" Width="60" Name="btnAddProdukt" Click="btnAddProdukt_Click">Add</Button>
                             <Button Width="60" Name="btnCheckInskaningProdukt" Click="btnCheckInskaningProdukt_Click">Check</Button>
                         </WrapPanel>
                     </StackPanel>
@@ -25,16 +25,25 @@
                 <GroupBox Header="Kundvagn">
                     <StackPanel Margin="10" Height="130" Width="130">
                         <Button Margin="0 0 0 10" Name="btnRemoveFrånVagn">Ta Bort</Button>
-                        <TextBlock Text="Namn"/>
-                        <TextBlock Name="tblProduktNamn" />
+                        
                         <WrapPanel>
-                            <TextBlock Text="Pris" />
-                            <TextBlock Margin="40 0 0 0" Text="Mängd" />
+                            <TextBlock Margin="10 0 0 0" Text="Namn"/>
+                            <TextBlock Margin="28 0 0 0" Width="50px" Text="Pris" />
+                        
+                        </WrapPanel>
+                        <WrapPanel >
+                            <TextBlock Margin="10 0 0 0" Width="50px" Name="tblProduktNamn" />
+                            <TextBlock Margin="10 0 0 0" Width="50px" Name="tblProduktPris" />
+                        </WrapPanel>
+                        <WrapPanel> 
+                            <TextBlock Margin="10 0 0 0" Text="Mängd" />
+                            <TextBlock Margin="22 0 0 0" Text="Totalpris" />
+                            
+                            
                         </WrapPanel>
                         <WrapPanel>
-                            <TextBlock Width="50px" Name="tblProduktPris" />
                             <TextBlock Width="50px" Margin="10 0 0 0" Name="tblProduktmängd" />
-                            
+                            <TextBlock Width="50px" Margin="10 0 0 0" Name="tblTotalpris" />
                         </WrapPanel>
                         <WrapPanel Margin="0 10 0 0">
                             <Button Margin="0 0 10 0" Width="60" Name="btnSenareProdukt" Click="btnSenareProdukt_Click" >&lt;=</Button>
