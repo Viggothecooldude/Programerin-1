@@ -10,7 +10,7 @@ namespace Slutprojekt_Viggo
     {
         
         
-            public string Serienummer { set; get; } = serienummer;
+            public string Serienummer { get; } = serienummer;
             public int Mangd { set; get; } = mangd;
         
     }

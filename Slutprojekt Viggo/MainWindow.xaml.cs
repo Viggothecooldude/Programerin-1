@@ -23,7 +23,7 @@ namespace Slutprojekt_Viggo
             InitializeComponent();
             Varulista();
         }
-        //skapar classobejekt som man sedan kan skanna ut
+        //initsialicering av klasser
         List<Vara> produkt = new List<Vara>();
         List<Kundvagn> kundvagnen = new List<Kundvagn>();
         void Varulista()
@@ -47,18 +47,31 @@ namespace Slutprojekt_Viggo
         {
             Kollanummer(tbxProduktInskaning.Text, "sökning");
         }
+        private void btnRemoveFrånVagn_Click(object sender, RoutedEventArgs e)
+        {
+            Remove();
+        }
         private void btnSenareProdukt_Click(object sender, RoutedEventArgs e)
         {
-            Flytta(true);
+            Flytta(false);
         }
 
         private void btnTidigareProdukt_Click(object sender, RoutedEventArgs e)
         {
-            Flytta(false);
+            Flytta(true);
+        }
+        private void btnSkapaKonto_Click(object sender, RoutedEventArgs e)
+        {
+            SkapaKonto(tbxKontoidSkapas.Text, tbxKontoLösenordSkapas.Text);
+        }
+        private void btnLoggaIn_Click(object sender, RoutedEventArgs e)
+        {
+            LoggaIn(tbxKontoid.Text, tbxKontoLösenord.Text);
         }
         //methoder
         void Kollanummer(string nummer, string knapp)
         {
+            bool oupphittad = true;
             for (int i = 0; i < produkt.Count; i++)
             {
                 //check knappen
@@ -70,25 +83,26 @@ namespace Slutprojekt_Viggo
                     {
                         tblProduktInskaningNamn.Text = produkt[i].Namn.ToString();
                         tblProduktInskaningPris.Text = produkt[i].Pris.ToString() + "kr";
+                        oupphittad = false;
                         break;
 
                     }
-                    else
-                    {
-                        tblProduktInskaningNamn.Text = "ingen vara hittades";
-                        tblProduktInskaningPris.Text = "ingen vara hittades";
-                        break;
-                    }
+
                 }
-               
-                
-                
+                if (oupphittad)
+                {
+                    tblProduktInskaningNamn.Text = "ingen vara hittades";
+                    tblProduktInskaningPris.Text = "ingen vara hittades";
+
+                }
+
+
             }
         }
         //lista med varor till kundvagnen
         void TillaggsLista(string nummer)
         {
-    
+
             if (nummer == tbxProduktInskaning.Text)
             {
                 if (kundvagnen.Count > 0)
@@ -106,13 +120,10 @@ namespace Slutprojekt_Viggo
                     }
                     for (int i = 0; i < produkt.Count; i++)
                     {
-
-
                         if (!tillagd && produkt[i].Serienummer.ToString() == nummer)
                         {
                             kundvagnen.Add(new Kundvagn(nummer, 1));
-                            // kundvagnen.Add(nummer);
-                            // kundvagnen[i].Mangd = kundvagnen[i].Mangd + 1;
+
                             break;
                         }
 
@@ -149,13 +160,25 @@ namespace Slutprojekt_Viggo
             }
 
         }
+        void Remove()
+        {
+            for (int i = 0; i < produkt.Count; i++)
+            {
+                if (tblProduktNamn.Text == produkt[i].Namn && kundvagnen[i].Mangd > 0)
+                {
+                    kundvagnen[i].Mangd -= 1;
+                    tblProduktmängd.Text = kundvagnen[i].Mangd.ToString();
+                    tblTotalpris.Text = TotalPris().ToString();
+                }
+            }
+        }
         int TotalPris()
         {
             int total = 0;
             for (int i = 0; i < kundvagnen.Count; i++)
             {
 
-               total = total + Pris(kundvagnen[i].Serienummer) * kundvagnen[i].Mangd;
+                total = total + Pris(kundvagnen[i].Serienummer) * kundvagnen[i].Mangd;
             }
             return total;
         }
@@ -171,32 +194,71 @@ namespace Slutprojekt_Viggo
 
             }
             return pris;
-            
+
         }
         void Flytta(bool framåt)
         {
             string nummer = "";
 
-            for (int i  = 0; i < produkt.Count; i ++)
+            for (int i = 0; i < produkt.Count; i++)
             {
                 if (tblProduktNamn.Text == produkt[i].Namn)
                 {
-                    
-                    if (framåt)
+
+                    if (framåt && i < kundvagnen.Count-1)
                     {
-                        nummer = produkt[i+1].Serienummer;
+                        nummer = kundvagnen[i + 1].Serienummer;
                         VisaVaraKundvagn(nummer);
+                        break;
                     }
-                    else
+                    else if (!framåt && i > 0 )
                     {
-                        nummer = produkt[i-1].Serienummer;
+                        
+                        nummer = kundvagnen[i - 1].Serienummer;
                         VisaVaraKundvagn(nummer);
+                        break;
+                        
                     }
                 }
+
             }
-            
         }
-        
+        List<Kund> kunder = new List<Kund>();
+        void SkapaKonto(string namn, string lösenord)
+        {
+            bool första = true;
+            for (int i = 0; i < kunder.Count; i++)
+            {
+                if (kunder[i].Lösenord == lösenord || kunder[i].Namn == namn)
+                {
+                    tblKontoInformationSkapas.Text = "id/lösen finns redan";
+                    första = false;
+                    break;
+                }
+            }
+            if (första && lösenord.Trim() != "" && namn.Trim() != "")
+            {
+                kunder.Add(new Kund(false, namn, lösenord, 0));
+                tblKontoInformationSkapas.Text = "Konto har skapats ";
+            }
+            else if (första) 
+            {
+                tblKontoInformationSkapas.Text = "Fyll i alla fält";
+            }
+
+        }
+        BankKonto bank = new BankKonto();
+        void LoggaIn(string Namn,string lösenord)
+        {
+            for (int i = 0; i < kunder.Count; i++)
+            {
+                if (kunder[i].Lösenord== lösenord && kunder[i].Namn==Namn)
+                {
+                   
+                }
+            }
+        }
+
     }
 }
 
