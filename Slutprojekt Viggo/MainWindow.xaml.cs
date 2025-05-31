@@ -252,20 +252,45 @@ namespace Slutprojekt_Viggo
             }
 
         }
-       
         void LoggaIn(string namn,string lösenord)
         {
             for (int i = 0; i < kunder.Count; i++)
             {
                 if (kunder[i].Lösenord== lösenord && kunder[i].Namn==namn)
                 {
-                    BankKonto bank = new BankKonto(kunder[i].Medlem, kunder[i].Namn, kunder[i].Lösenord, kunder[i].Saldo);
-                    bank.Show();
-                    
+                    Open(i); 
                 }
             }
         }
+        void Open(int vilken)
+        {
+            tbxBankKontoId.Text = kunder[vilken].Namn;
+            tblBankTotalSaldo.Text = kunder[vilken].Saldo.ToString();
+            if (kunder[vilken].Medlem)
+            {
+                btnBliMedlem.Content = "Är medlem";
+            }
 
+        }
+        void Pängatilläg(int pengar)
+        {
+
+        }
+        private void btnLaggTillPengar_Click(object sender, RoutedEventArgs e)
+        {
+            int.TryParse(tbxBankPengarTilläg.Text, out int money);
+            Pängatilläg(money);
+        }
+
+        private void btnKöp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBliMedlem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 
