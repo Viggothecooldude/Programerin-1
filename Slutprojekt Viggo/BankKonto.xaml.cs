@@ -19,9 +19,15 @@ namespace Slutprojekt_Viggo
     /// </summary>
     public partial class BankKonto : Window
     {
-        public BankKonto()
+        public BankKonto(bool medlem, string namn, string lösenord, double saldo)
         {
             InitializeComponent();
+            Open();
+            void Open()
+            {
+                tbxBankKontoId.Text = namn;
+            }
         }
+
     }
 }
