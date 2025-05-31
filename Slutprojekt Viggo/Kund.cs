@@ -11,6 +11,6 @@ namespace Slutprojekt_Viggo
         public bool Medlem { get; set; } = medlem;
         public string Namn { get;  } = namn;
         public string Lösenord { get;  } = lösenord;
-        public double saldo { get; set; } = saldo;
+        public double Saldo { get; set; } = saldo;
     }
 }

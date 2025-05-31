@@ -75,7 +75,22 @@
 
                     </StackPanel>
                 </GroupBox>
+                <GroupBox Header="Bank Konto">
+                    <StackPanel Margin="10,0,10,0" Height="150">
+                        <TextBlock Margin="0 0 0 0" >Namn</TextBlock>
+                        <TextBlock Margin="0 0 0 5" Name="tbxBankKontoId"></TextBlock>
+                        <TextBlock >Totalsaldo</TextBlock>
+                        <TextBlock Margin="0 0 0 10" Name="tblBankTotalSaldo"></TextBlock>
+                        <WrapPanel>
+                            <Button x:Name="btnLaggTillPengar" Width="100px" HorizontalAlignment="Left"  Margin="0 0 18 0" Click="btnLaggTillPengar_Click">lägg till pengar</Button>
+                            <Button x:Name="btnKöp" Width="100px" HorizontalAlignment="Left" Click="btnKöp_Click"  >Köpp Kundvagnen</Button>
+                        </WrapPanel>
+                        <TextBox Margin="0 0 0 10" Name="tbxBankPengarTilläg"></TextBox>
+                        <Button Name="btnBliMedlem" Click="btnBliMedlem_Click" >Bli medlem 100kr</Button>
+                    </StackPanel>
+                </GroupBox>
             </WrapPanel>
         </StackPanel>
+        
     </Grid>
 </Window>

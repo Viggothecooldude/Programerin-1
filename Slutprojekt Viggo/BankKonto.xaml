@@ -13,9 +13,12 @@
                 <TextBlock Margin="0 0 0 5" Name="tbxBankKontoId"></TextBlock>
                 <TextBlock >Totalsaldo</TextBlock>
                 <TextBlock Margin="0 0 0 10" Name="tblBankTotalSaldo"></TextBlock>
-                <Button HorizontalAlignment="Left" >lägg till pengar</Button>
+                <WrapPanel>
+                    <Button x:Name="btnLaggTillPengar" Width="100px" HorizontalAlignment="Left"  Margin="0 0 18 0" Click="btnLaggTillPengar_Click">lägg till pengar</Button>
+                    <Button x:Name="btnKöp" Width="100px" HorizontalAlignment="Left" Click="btnKöp_Click"  >Köpp Kundvagnen</Button>
+                </WrapPanel>
                 <TextBox Margin="0 0 0 10" Name="tbxBankPengarTilläg"></TextBox>
-                <Button Name="btnBliMedlem" >Bli medlem 100kr</Button>
+                <Button Name="btnBliMedlem" Click="btnBliMedlem_Click" >Bli medlem 100kr</Button>
 
 
             </StackPanel>

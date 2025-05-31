@@ -18,12 +18,14 @@ namespace Slutprojekt_Viggo
     /// </summary>
     public partial class MainWindow : Window
     {
+       
         public MainWindow()
         {
             InitializeComponent();
             Varulista();
             
         }
+
         //initsialicering av klasser
         List<Vara> produkt = new List<Vara>();
         List<Kundvagn> kundvagnen = new List<Kundvagn>();
@@ -41,8 +43,13 @@ namespace Slutprojekt_Viggo
         //knappevent
         private void btnAddProdukt_Click(object sender, RoutedEventArgs e)
         {
-            TillaggsLista(tbxProduktInskaning.Text);
-            VisaVaraKundvagn(tbxProduktInskaning.Text);
+             
+            if (Kollanummer(tbxProduktInskaning.Text, "sökning"))
+            {
+                TillaggsLista(tbxProduktInskaning.Text);
+                VisaVaraKundvagn(tbxProduktInskaning.Text);
+            }
+            
         }
         private void btnCheckInskaningProdukt_Click(object sender, RoutedEventArgs e)
         {
@@ -70,7 +77,7 @@ namespace Slutprojekt_Viggo
             LoggaIn(tbxKontoid.Text, tbxKontoLösenord.Text);
         }
         //methoder
-        void Kollanummer(string nummer, string knapp)
+        bool Kollanummer(string nummer, string knapp)
         {
             bool oupphittad = true;
             for (int i = 0; i < produkt.Count; i++)
@@ -85,8 +92,7 @@ namespace Slutprojekt_Viggo
                         tblProduktInskaningNamn.Text = produkt[i].Namn.ToString();
                         tblProduktInskaningPris.Text = produkt[i].Pris.ToString() + "kr";
                         oupphittad = false;
-                        break;
-
+                        return true;
                     }
 
                 }
@@ -94,26 +100,13 @@ namespace Slutprojekt_Viggo
                 {
                     tblProduktInskaningNamn.Text = "ingen vara hittades";
                     tblProduktInskaningPris.Text = "ingen vara hittades";
-
                 }
-
-
             }
+            return false;
         }
         //lista med varor till kundvagnen
         void TillaggsLista(string nummer)
         {
-            bool finns = false;
-            //loop produkt
-            for (int i = 0; i < produkt.Count; i++)
-            {
-                if (produkt[i].Serienummer==nummer)
-                {
-                    finns = true;
-                }
-            }
-                if (finns)
-                {
                     if (kundvagnen.Count > 0)
                     {
                         bool tillagd = false;
@@ -143,27 +136,31 @@ namespace Slutprojekt_Viggo
                     else
                     {
                         kundvagnen.Add(new Kundvagn(nummer, 1));
-                        //kundvagnen[0].Mangd = kundvagnen[0].Mangd + 1;
-                    }
-
-
-                }
-            
+                    } 
+           
         }
         void VisaVaraKundvagn(string nummer)
         {
-            for (int i = 0; i < kundvagnen.Count + 1; i++)
+            for (int i = 0; i < kundvagnen.Count ; i++)
             {
 
 
                 if (nummer == kundvagnen[i].Serienummer)
                 {
-                    tblProduktNamn.Text = produkt[i].Namn.ToString();
-                    tblProduktPris.Text = produkt[i].Pris.ToString() + "kr";
-                    tblProduktmängd.Text = kundvagnen[i].Mangd.ToString();
-                    tblTotalpris.Text = TotalPris().ToString();
-                    break;
+                    for (int j = 0; j < produkt.Count; j++)
+                    {
+                        if (nummer == produkt[j].Serienummer)
+                        {
 
+
+
+                            tblProduktNamn.Text = produkt[j].Namn.ToString();
+                            tblProduktPris.Text = produkt[j].Pris.ToString() + "kr";
+                            tblProduktmängd.Text = kundvagnen[i].Mangd.ToString();
+                            tblTotalpris.Text = TotalPris().ToString();
+                            break;
+                        }
+                    }
                 }
 
 
@@ -187,7 +184,6 @@ namespace Slutprojekt_Viggo
             int total = 0;
             for (int i = 0; i < kundvagnen.Count; i++)
             {
-
                 total = total + Pris(kundvagnen[i].Serienummer) * kundvagnen[i].Mangd;
             }
             return total;
@@ -223,7 +219,6 @@ namespace Slutprojekt_Viggo
                     }
                     else if (!framåt && i > 0 )
                     {
-                        
                         nummer = kundvagnen[i - 1].Serienummer;
                         VisaVaraKundvagn(nummer);
                         break;
@@ -264,7 +259,7 @@ namespace Slutprojekt_Viggo
             {
                 if (kunder[i].Lösenord== lösenord && kunder[i].Namn==namn)
                 {
-                    BankKonto bank = new BankKonto(false,namn,lösenord,0);
+                    BankKonto bank = new BankKonto(kunder[i].Medlem, kunder[i].Namn, kunder[i].Lösenord, kunder[i].Saldo);
                     bank.Show();
                     
                 }

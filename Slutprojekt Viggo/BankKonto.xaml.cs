@@ -19,15 +19,45 @@ namespace Slutprojekt_Viggo
     /// </summary>
     public partial class BankKonto : Window
     {
-        public BankKonto(bool medlem, string namn, string lösenord, double saldo)
+
+   
+        public BankKonto( bool medlem, string namn, string lösenord, double saldo )
         {
+            kontot.Add(new Kund(medlem, namn, lösenord, saldo));
             InitializeComponent();
-            Open();
-            void Open()
+           
+            Open(medlem,namn,lösenord,saldo);
+            
+           
+        }
+       List<Kund> kontot = new List<Kund>();
+        
+        void Open(bool medlem, string namn, string lösenord, double saldo)
+        {
+            tbxBankKontoId.Text = namn;
+            tblBankTotalSaldo.Text = saldo.ToString();
+            if (medlem)
             {
-                tbxBankKontoId.Text = namn;
+                btnBliMedlem.Content = "Är medlem";
             }
         }
+        private void btnBliMedlem_Click(object sender, RoutedEventArgs e)
+        {
+            if (!kontot[0].Medlem)
+            {
+                
+                btnBliMedlem.Content = "Är medlem";
+            }
+        }
+        private void btnLaggTillPengar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btnKöp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
 
     }
 }
