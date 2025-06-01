@@ -51,18 +51,7 @@
                         </WrapPanel>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Bank Inlogning">
-                    <StackPanel Margin="10" Height="130" Width="130">
-                        <TextBlock Margin="0 0 0 0" >Namn</TextBlock>
-                        <TextBox Margin="0 0 0 0" Name="tbxKontoid"></TextBox>
-                        <TextBlock >Lösenord</TextBlock>
-                        <TextBox Margin="0 0 0 10" Name="tbxKontoLösenord"></TextBox>
-                        <TextBlock Margin="0 0 0 10" x:Name="tblKontoInformation"></TextBlock>
-                        <Button Name="btnLoggaIn" Click="btnLoggaIn_Click" >Logga In</Button>
-
-
-                    </StackPanel>
-                </GroupBox>
+                
                 <GroupBox Header="Skapa Konto">
                     <StackPanel Margin="10" Height="130" Width="130">
                         <TextBlock Margin="0 0 0 0" >Namn</TextBlock>
@@ -71,6 +60,18 @@
                         <TextBox Margin="0 0 0 10" Name="tbxKontoLösenordSkapas"></TextBox>
                         <TextBlock Margin="0 0 0 10" Name="tblKontoInformationSkapas" ></TextBlock>
                         <Button Name="btnSkapaKonto" Click="btnSkapaKonto_Click" >Skapa Konto</Button>
+
+
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Bank Inlogning">
+                    <StackPanel Margin="10" Height="130" Width="130">
+                        <TextBlock Margin="0 0 0 0" >Namn</TextBlock>
+                        <TextBox Margin="0 0 0 0" Name="tbxKontoid"></TextBox>
+                        <TextBlock >Lösenord</TextBlock>
+                        <TextBox Margin="0 0 0 10" Name="tbxKontoLösenord"></TextBox>
+                        <TextBlock Margin="0 0 0 10" x:Name="tblKontoInformation"></TextBlock>
+                        <Button Name="btnLoggaIn" Click="btnLoggaIn_Click" >Logga In</Button>
 
 
                     </StackPanel>

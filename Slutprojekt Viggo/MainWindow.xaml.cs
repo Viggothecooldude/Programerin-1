@@ -72,10 +72,14 @@ namespace Slutprojekt_Viggo
         private void btnSkapaKonto_Click(object sender, RoutedEventArgs e)
         {
             SkapaKonto(tbxKontoidSkapas.Text, tbxKontoLösenordSkapas.Text);
+            tbxKontoidSkapas.Text = "";
+            tbxKontoLösenordSkapas.Text = "";
         }
         private void btnLoggaIn_Click(object sender, RoutedEventArgs e)
         {
             LoggaIn(tbxKontoid.Text, tbxKontoLösenord.Text);
+            tbxKontoid.Text = "";
+            tbxKontoLösenord.Text = "";
         }
         //methoder
         bool Kollanummer(string nummer, string knapp)
@@ -172,10 +176,16 @@ namespace Slutprojekt_Viggo
         {
             for (int i = 0; i < produkt.Count; i++)
             {
-                if (tblProduktNamn.Text == produkt[i].Namn && kundvagnen[i].Mangd > 0)
+                if (tblProduktNamn.Text == produkt[i].Namn )
                 {
-                    kundvagnen[i].Mangd -= 1;
-                    VisaVaraKundvagn(produkt[i].Serienummer);
+                    for ( int j = 0; j < kundvagnen.Count; j++)
+                    {
+                        if (produkt[i].Serienummer == kundvagnen[j].Serienummer && kundvagnen[j].Mangd > 0)
+                        {
+                            kundvagnen[j].Mangd -= 1;
+                            VisaVaraKundvagn(produkt[i].Serienummer);
+                        }
+                    }
                 }
             }
         }
@@ -214,25 +224,32 @@ namespace Slutprojekt_Viggo
         void Flytta(bool framåt)
         {
             string nummer = "";
-
+            bool fortsätt = true;
             for (int i = 0; i < produkt.Count; i++)
             {
-                if (tblProduktNamn.Text == produkt[i].Namn)
+                if (tblProduktNamn.Text == produkt[i].Namn&& fortsätt)
                 {
-
-                    if (framåt && i < kundvagnen.Count-1)
+                    for (int j = 0; j < kundvagnen.Count; j++)
                     {
-                        nummer = kundvagnen[i + 1].Serienummer;
-                        VisaVaraKundvagn(nummer);
-                        break;
+                        if (produkt[i].Serienummer == kundvagnen[j].Serienummer)
+                        {
+                            if (framåt && j < kundvagnen.Count -1)
+                            {
+                                nummer = kundvagnen[j + 1].Serienummer;
+                                VisaVaraKundvagn(nummer);
+                                fortsätt = false;
+                                break;
+                            }
+                            else if (!framåt && j > 0)
+                            {
+                                nummer = kundvagnen[j - 1].Serienummer;
+                                VisaVaraKundvagn(nummer);
+                                fortsätt = false;
+                                break;
+                            }
+                        }
                     }
-                    else if (!framåt && i > 0 )
-                    {
-                        nummer = kundvagnen[i - 1].Serienummer;
-                        VisaVaraKundvagn(nummer);
-                        break;
-                        
-                    }
+                   
                 }
 
             }
