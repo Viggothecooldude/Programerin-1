@@ -49,7 +49,7 @@ namespace Slutprojekt_Viggo
                 TillaggsLista(tbxProduktInskaning.Text);
                 VisaVaraKundvagn(tbxProduktInskaning.Text);
             }
-            
+            Open(vilkenKund);
         }
         private void btnCheckInskaningProdukt_Click(object sender, RoutedEventArgs e)
         {
@@ -58,6 +58,7 @@ namespace Slutprojekt_Viggo
         private void btnRemoveFrånVagn_Click(object sender, RoutedEventArgs e)
         {
             Remove();
+            Open(vilkenKund);
         }
         private void btnSenareProdukt_Click(object sender, RoutedEventArgs e)
         {
@@ -157,7 +158,7 @@ namespace Slutprojekt_Viggo
                             tblProduktNamn.Text = produkt[j].Namn.ToString();
                             tblProduktPris.Text = produkt[j].Pris.ToString() + "kr";
                             tblProduktmängd.Text = kundvagnen[i].Mangd.ToString();
-                            tblTotalpris.Text = TotalPris().ToString();
+                            tblTotalpris.Text = (kundvagnen[i].Mangd* produkt[j].Pris).ToString() + "kr";
                             break;
                         }
                     }
@@ -174,26 +175,34 @@ namespace Slutprojekt_Viggo
                 if (tblProduktNamn.Text == produkt[i].Namn && kundvagnen[i].Mangd > 0)
                 {
                     kundvagnen[i].Mangd -= 1;
-                    tblProduktmängd.Text = kundvagnen[i].Mangd.ToString();
-                    tblTotalpris.Text = TotalPris().ToString();
+                    VisaVaraKundvagn(produkt[i].Serienummer);
                 }
             }
         }
-        int TotalPris()
+        double TotalPris(bool medlemsrea)
         {
-            int total = 0;
+            double total = 0;
             for (int i = 0; i < kundvagnen.Count; i++)
             {
-                total = total + Pris(kundvagnen[i].Serienummer) * kundvagnen[i].Mangd;
+                total += Pris(kundvagnen[i].Serienummer , medlemsrea, i) * kundvagnen[i].Mangd;
+                
             }
             return total;
         }
-        int Pris(string nummer)
+        double Pris(string nummer,bool medlemsrea, int kundvagnsmangd)
         {
-            int pris = 0;
+            double pris = 0;
             for (int i = 0; i < produkt.Count; i++)
             {
-                if (nummer == produkt[i].Serienummer)
+                if (nummer == produkt[i].Serienummer && medlemsrea && kundvagnen[kundvagnsmangd].Mangd >= 3)
+                {
+                    pris = produkt[i].Pris * 0.7;
+                }
+                else if (nummer == produkt[i].Serienummer && medlemsrea || nummer == produkt[i].Serienummer && kundvagnen[kundvagnsmangd].Mangd >=3)
+                {
+                    pris = produkt[i].Pris*0.9  ;
+                }
+                else if (nummer == produkt[i].Serienummer)
                 {
                     pris = produkt[i].Pris;
                 }
@@ -264,17 +273,41 @@ namespace Slutprojekt_Viggo
         }
         void Open(int vilken)
         {
-            tbxBankKontoId.Text = kunder[vilken].Namn;
-            tblBankTotalSaldo.Text = kunder[vilken].Saldo.ToString();
-            if (kunder[vilken].Medlem)
+            if (vilken != -1)
             {
-                btnBliMedlem.Content = "Är medlem";
+                tbxBankKontoId.Text = kunder[vilken].Namn;
+                tblBankTotalSaldo.Text = kunder[vilken].Saldo.ToString();
+                if (kunder[vilken].Medlem)
+                {
+                    btnBliMedlem.Content = "Är medlem";
+                }
+                else
+                {
+                    btnBliMedlem.Content = "Bli medlem 100kr";
+                }
+                vilkenKund = vilken;
+                tblTotalKostnad.Text = TotalPris(false).ToString();
+                tblMedlemskostnad.Text = TotalPris(true).ToString();
             }
-
         }
-        void Pängatilläg(int pengar)
+        int vilkenKund = -1;
+        void Pängatilläg(double pengar)
         {
-
+            
+                if (kunder[vilkenKund].Namn == tbxBankKontoId.Text)
+                {
+                    kunder[vilkenKund].Saldo += pengar;
+                    tblBankTotalSaldo.Text= kunder[vilkenKund].Saldo.ToString();
+                }
+            
+        }
+        void Köp()
+        {
+            if (kunder[vilkenKund].Saldo>= TotalPris(kunder[vilkenKund].Medlem))
+            {
+                 Pängatilläg(-TotalPris(kunder[vilkenKund].Medlem));
+            }
+           
         }
         private void btnLaggTillPengar_Click(object sender, RoutedEventArgs e)
         {
@@ -284,12 +317,18 @@ namespace Slutprojekt_Viggo
 
         private void btnKöp_Click(object sender, RoutedEventArgs e)
         {
-
+            Köp();
         }
 
         private void btnBliMedlem_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!kunder[vilkenKund].Medlem && kunder[vilkenKund].Saldo>=100)
+            {
+                kunder[vilkenKund].Medlem = true;
+                btnBliMedlem.Content = "Är medlem";
+                Pängatilläg(-100);
+                
+            }
         }
     }
 }

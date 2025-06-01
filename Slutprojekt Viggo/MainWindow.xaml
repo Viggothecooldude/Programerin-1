@@ -76,17 +76,27 @@
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="Bank Konto">
-                    <StackPanel Margin="10,0,10,0" Height="150">
+                    <StackPanel Margin="10,0,10,0" Height="auto">
                         <TextBlock Margin="0 0 0 0" >Namn</TextBlock>
                         <TextBlock Margin="0 0 0 5" Name="tbxBankKontoId"></TextBlock>
                         <TextBlock >Totalsaldo</TextBlock>
                         <TextBlock Margin="0 0 0 10" Name="tblBankTotalSaldo"></TextBlock>
                         <WrapPanel>
-                            <Button x:Name="btnLaggTillPengar" Width="100px" HorizontalAlignment="Left"  Margin="0 0 18 0" Click="btnLaggTillPengar_Click">lägg till pengar</Button>
-                            <Button x:Name="btnKöp" Width="100px" HorizontalAlignment="Left" Click="btnKöp_Click"  >Köpp Kundvagnen</Button>
+                            <TextBlock Width="100px" Margin="0 0 18 5">Totalkostnad</TextBlock>
+                            <TextBlock Width="100px" Margin="0 0 0 5">Medlemskostnad</TextBlock>
                         </WrapPanel>
-                        <TextBox Margin="0 0 0 10" Name="tbxBankPengarTilläg"></TextBox>
-                        <Button Name="btnBliMedlem" Click="btnBliMedlem_Click" >Bli medlem 100kr</Button>
+                        <WrapPanel>
+                            <TextBlock Width="100px"  Margin="0 0 18 0" x:Name="tblTotalKostnad"></TextBlock>
+                            <TextBlock Width="100px" x:Name="tblMedlemskostnad"></TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button x:Name="btnLaggTillPengar" Width="100px" HorizontalAlignment="Left"  Margin="0 5 18 5" Click="btnLaggTillPengar_Click">lägg till pengar</Button>
+                            <Button x:Name="btnKöp" Width="100px" HorizontalAlignment="Left" Margin="0 5 0 5" Click="btnKöp_Click"  >Köpp Kundvagnen</Button>
+                        </WrapPanel>
+                        <TextBox Margin="0 0 0 5" Name="tbxBankPengarTilläg"></TextBox>
+                        <Button Margin="0 0 0 5" Name="btnBliMedlem" Click="btnBliMedlem_Click" >Bli medlem 100kr</Button>
+                        <TextBlock Margin="0 0 0 5" x:Name="tblBankKontoInfo"></TextBlock>
+                        
                     </StackPanel>
                 </GroupBox>
             </WrapPanel>
