@@ -21,7 +21,8 @@ namespace Slutprojekt_Viggo
     {
 
    
-        public BankKonto( bool medlem, string namn, string lösenord, double saldo )
+        public BankKonto( bool medlem, string namn, string lösenord, double saldo )//denna sida planerades att användas när man loggat in på sitt konto genom att öppna en ny flik 
+            //Hittade inget sätt att ändra saker som saldo i det här fönstret så jag skickade tillbaka allt till orginalfönstret men kanske kommer tillbaka till det här om jag har tid i veckan
         {
             kontot.Add(new Kund(medlem, namn, lösenord, saldo));
             InitializeComponent();
